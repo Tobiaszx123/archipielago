@@ -188,6 +188,45 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 #siteTip .dots{letter-spacing:-1px;color:#7a6247;font-size:10px}
 #siteTip .sc{margin-top:4px;border-top:1px dashed #b89e6e;padding-top:3px;font-weight:700;font-size:12px;color:#5e3d0c}
 
+
+/* barra de recursos (arriba) */
+#hand{display:flex;gap:4px;align-items:center;padding:3px 5px;border-radius:8px;border:0;color:inherit;font:inherit;cursor:pointer;flex:none;position:relative;
+  background:linear-gradient(180deg,#120a04,#22150b);box-shadow:inset 0 1px 5px rgba(0,0,0,.85),0 0 0 1px #6b4826,0 0 0 2px #1c110a,0 0 0 3px rgba(201,162,90,.35)}
+#hand:hover{box-shadow:inset 0 1px 5px rgba(0,0,0,.85),0 0 0 1px #c9a25a,0 0 0 2px #1c110a,0 0 0 3px rgba(201,162,90,.6)}
+.rs{position:relative;display:flex;align-items:center;gap:3px;padding:1px 7px 1px 2px;border-radius:5px;min-width:54px;
+  background:linear-gradient(180deg,rgba(255,235,190,.07),rgba(0,0,0,.25));border:1px solid rgba(201,162,90,.28)}
+.rs .ri{width:26px;height:26px;flex:none;display:block;filter:drop-shadow(0 1px 1px rgba(0,0,0,.8))}
+.rs .ri svg{width:100%;height:100%;display:block}
+.rs .ct{font-family:var(--display);font-weight:700;font-size:19px;line-height:1;color:#f6e7c1;min-width:12px;text-align:right;margin-left:auto;text-shadow:0 1px 0 #000,0 0 6px rgba(0,0,0,.6)}
+.rs.zero .ct{color:#8a7a5c}.rs.zero .ri{opacity:.55;filter:grayscale(.6)}
+.rs.bump{animation:rsBump .5s}
+@keyframes rsBump{30%{transform:translateY(-3px) scale(1.14);background:rgba(224,183,101,.38);box-shadow:0 0 12px rgba(224,183,101,.7)}}
+#hand .sep{width:1px;height:24px;background:rgba(201,162,90,.35);margin:0 1px}
+#hand.pulse .rs:not(.dv){animation:handp 1.6s ease-in-out infinite}
+@keyframes handp{50%{box-shadow:0 0 0 1px rgba(224,183,101,.8),0 0 12px rgba(224,183,101,.55)}}
+.fly{position:fixed;z-index:50;width:30px;height:30px;padding:3px;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 40% 35%,#fffaf0,#e3d1a6);border:1.5px solid #8a6a32;box-shadow:0 5px 12px rgba(0,0,0,.5),0 0 10px rgba(255,230,150,.6)}
+.fly svg{width:100%;height:100%;display:block}
+.hc .big svg{width:100%;height:100%;display:block}
+/* colocación suave de casas y caminos */
+.drop{animation:drop .75s cubic-bezier(.25,.8,.3,1) both;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes drop{0%{transform:translateY(-80px) scale(.92);opacity:0}40%{opacity:1;transform:translateY(0) scale(1.1,.8)}58%{transform:translateY(-9px) scale(.95,1.07)}74%{transform:translateY(0) scale(1.04,.96)}88%{transform:translateY(-2px) scale(.99,1.01)}100%{transform:none}}
+.dropSh{animation:dropSh .75s ease-out both;transform-box:fill-box;transform-origin:center}
+@keyframes dropSh{0%{transform:scale(.25);opacity:0}40%{transform:scale(1.1);opacity:.4}100%{transform:scale(1);opacity:0}}
+.roadIn .rd{stroke-dasharray:1;stroke-dashoffset:1;animation:roadIn .6s ease-out forwards}
+.roadIn .rdD{opacity:0;animation:fadeIn .3s .55s forwards}
+@keyframes roadIn{to{stroke-dashoffset:0}}
+@keyframes fadeIn{to{opacity:1}}
+.flagW{animation:flagW 1.6s ease-in-out infinite;transform-box:fill-box;transform-origin:0 50%}
+@keyframes flagW{50%{transform:scaleX(.82) skewY(4deg)}}
+.net{animation:net 3.6s ease-in-out infinite;transform-box:fill-box;transform-origin:0 50%}
+@keyframes net{50%{transform:scaleX(1.06) translateY(1px)}}
+.foam{animation:foam 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes foam{50%{transform:scale(1.1);opacity:.25}}
+.fishJ{opacity:0;animation:fishJ 7s linear infinite;transform-box:fill-box;transform-origin:center}
+@keyframes fishJ{0%,80%{opacity:0;transform:translate(0,0) rotate(-35deg)}82%{opacity:1;transform:translate(0,0) rotate(-35deg)}89%{transform:translate(6px,-9px) rotate(0)}96%{opacity:1;transform:translate(12px,0) rotate(35deg)}97%,100%{opacity:0;transform:translate(12px,1px) rotate(35deg)}}
+.ripple{opacity:0;animation:ripple 7s linear infinite;transform-box:fill-box;transform-origin:center}
+@keyframes ripple{0%,95%{opacity:0;transform:scale(.3)}96%{opacity:.8;transform:scale(.4)}100%{opacity:0;transform:scale(1.4)}}
+.ring2.gold{stroke:#ffe08a;stroke-width:2.6}
 /* columna derecha: turno y crónica */
 #right{grid-area:right;min-height:0;display:flex;flex-direction:column;border-radius:10px;overflow:hidden;color:var(--ink);
   border:2px solid #0d0703;box-shadow:inset 0 0 0 2px #6b4826,inset 0 0 0 4px #1c110a,0 6px 18px rgba(0,0,0,.5)}
@@ -223,9 +262,7 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
 /* barra inferior: cartas y construcciones */
 #bottombar{grid-area:bot;display:flex;align-items:stretch;gap:8px;padding:6px 8px;min-width:0}
-#hand{display:flex;gap:6px;padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer;position:relative;flex:none}
-#hand::after{content:'Tocá para abrir';position:absolute;left:50%;bottom:-3px;transform:translate(-50%,100%);font-size:9.5px;color:var(--tinta2);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;opacity:0;transition:opacity .2s}
-#hand:hover::after{opacity:1}
+
 .rcard{position:relative;width:62px;height:78px;border-radius:7px;color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:4px 3px 4px;
   border:1px solid #8a6a32;box-shadow:inset 0 0 0 2px rgba(255,255,255,.35),inset 0 0 0 3px rgba(138,106,50,.25),0 3px 0 #2a180c,0 5px 10px rgba(0,0,0,.45);transition:transform .2s cubic-bezier(.3,1.6,.5,1)}
 .rcard .lb{font-family:var(--display);font-weight:700;font-size:13px;line-height:1}
@@ -233,12 +270,9 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .rcard .ct{min-width:22px;height:18px;border-radius:9px;background:#3a2415;color:var(--parch);font-weight:800;font-size:12px;display:grid;place-items:center;padding:0 5px;border:1px solid #c9a25a77}
 .rcard.zero{filter:saturate(.3);opacity:.62}
 .rcard.zero .ct{background:#7a6247}
-#hand:hover .rcard{transform:translateY(-3px)}
-#hand:hover .rcard:nth-child(2){transform:translateY(-5px) rotate(1deg)}
 .rcard.bump{animation:bump .45s}
 @keyframes bump{40%{transform:translateY(-9px) scale(1.1)}}
-#hand.pulse .rcard{animation:handp 1.6s ease-in-out infinite}
-@keyframes handp{50%{box-shadow:inset 0 0 0 2px rgba(255,255,255,.35),0 3px 0 #2a180c,0 0 0 2px rgba(224,183,101,.8),0 0 14px rgba(224,183,101,.55)}}
+
 #devBox{flex:none;width:150px;padding:5px 7px;display:flex;flex-direction:column;gap:4px;cursor:pointer}
 #devBox .h{display:flex;align-items:center;justify-content:space-between;font-family:var(--display);font-weight:700;font-size:13.5px;color:var(--parch)}
 #devBox .h em{font-style:normal;font-family:var(--body);font-size:11px;background:#5a3a22;border-radius:9px;padding:0 6px;color:var(--parch2)}
@@ -488,6 +522,7 @@ table.costs th{text-align:left;font-size:10px;letter-spacing:.1em;text-transform
   #app{gap:4px;padding:3px 0;grid-template-columns:clamp(104px,14vw,150px) minmax(0,1fr) clamp(140px,19vw,200px)}
   #topbar{min-height:28px;padding:2px 6px;gap:6px}.brand{font-size:17px;gap:5px}.crest{width:20px;height:20px;font-size:10px}
   #banner{font-size:14px}#banner .orn{display:none}
+  .brand .bt{display:none}#hand{padding:2px 3px;gap:2px}.rs{min-width:40px;padding:0 4px 0 1px;gap:1px}.rs .ri{width:19px;height:19px}.rs .ct{font-size:14px}#hand .sep{height:18px}
   .iconBtn,.rulesBtn{height:24px}.iconBtn{width:24px;font-size:11px}.rulesBtn{font-size:13px;padding:0 8px}
   #left{padding:4px 3px}.colT{font-size:13px;margin-bottom:2px}
   .pl{gap:5px;padding:3px 3px 3px 2px}.av{width:26px;height:26px;font-size:13px;border-width:1.5px}.pl .nm{font-size:13.5px}.pl .hs{display:none}.pl .st{font-size:10.5px;gap:4px}
@@ -526,7 +561,8 @@ table.costs th{text-align:left;font-size:10px;letter-spacing:.1em;text-transform
 <body>
 <div id="app">
   <header id="topbar" class="woodBox">
-    <div class="brand"><span class="crest">⚓</span>Archipiélago</div>
+    <div class="brand"><span class="crest">⚓</span><span class="bt">Archipiélago</span></div>
+    <button id="hand" type="button" title="Tus recursos: tocá para abrir tus cartas en abanico"></button>
     <div id="banner"><span class="orn">❦</span><div class="dot"></div><span id="bannerTxt">Archipiélago</span><span class="orn">❦</span></div>
     <div id="topBtns">
       <button class="rulesBtn" id="bManual" type="button" title="Libro de reglas">📖 <span>Reglas</span></button>
@@ -572,7 +608,6 @@ table.costs th{text-align:left;font-size:10px;letter-spacing:.1em;text-transform
     <div id="log"></div>
   </aside>
   <footer id="bottombar" class="woodBox">
-    <button id="hand" type="button" title="Tus cartas: tocá para abrirlas en abanico"></button>
     <div id="devBox" class="woodBox" title="Cartas de desarrollo"><div class="h"><span>Cartas de desarrollo</span><span class="sm">🃏</span><em id="devN">0</em></div><div id="devs"></div></div>
     <div id="actions"></div>
   </footer>
@@ -892,22 +927,15 @@ function kiln(x,y){return`<g><ellipse cx="${f(x)}" cy="${f(y)}" rx="11" ry="3" f
 function oasis(x,y){return`<g><ellipse cx="${f(x)}" cy="${f(y)}" rx="12" ry="4.5" fill="#3fa7c4" stroke="#f3e5b8" stroke-width="1.2"/><ellipse cx="${f(x-3)}" cy="${f(y-1)}" rx="4" ry="1" fill="#bff0fb" opacity=".7"/><path d="M${f(x+6)} ${f(y-1)} q-1 -9 2 -16" stroke="#7a5230" stroke-width="1.8" fill="none"/><path d="M${f(x+8)} ${f(y-17)} q-7 -2 -10 3 M${f(x+8)} ${f(y-17)} q7 -3 10 3 M${f(x+8)} ${f(y-17)} q-3 -6 -8 -5 M${f(x+8)} ${f(y-17)} q4 -6 9 -4" stroke="#3f8f3a" stroke-width="2" fill="none" stroke-linecap="round"/></g>`}
 function lighthouse(x,y){return`<g><ellipse cx="${f(x)}" cy="${f(y+2)}" rx="13" ry="4.5" fill="#6f727a"/><ellipse cx="${f(x-6)}" cy="${f(y+1)}" rx="5" ry="3" fill="#8d9098"/><polygon points="${f(x-5)},${f(y)} ${f(x+5)},${f(y)} ${f(x+3.5)},${f(y-26)} ${f(x-3.5)},${f(y-26)}" fill="#f4efe2"/><polygon points="${f(x-4.6)},${f(y-8)} ${f(x+4.6)},${f(y-8)} ${f(x+4.2)},${f(y-14)} ${f(x-4.2)},${f(y-14)}" fill="#d23b2f"/><polygon points="${f(x-3.9)},${f(y-19)} ${f(x+3.9)},${f(y-19)} ${f(x+3.6)},${f(y-24)} ${f(x-3.6)},${f(y-24)}" fill="#d23b2f"/><rect x="${f(x-4.5)}" y="${f(y-31)}" width="9" height="5" fill="#2e3036"/><circle cx="${f(x)}" cy="${f(y-28.5)}" r="2.3" fill="#ffe680"/><polygon class="beam" points="${f(x)},${f(y-28.5)} ${f(x+50)},${f(y-40)} ${f(x+50)},${f(y-17)}" fill="#fff3a0" opacity=".5"/><polygon points="${f(x-5.5)},${f(y-31)} ${f(x+5.5)},${f(y-31)} ${f(x)},${f(y-37)}" fill="#d23b2f"/></g>`}
 function boat(x,y,d){return`<g class="bob" style="animation-delay:${d}s"><ellipse cx="${f(x)}" cy="${f(y+1)}" rx="12" ry="2.5" fill="#0c3a4c" opacity=".45"/><path d="M${f(x-10)} ${f(y-3)} h20 l-4 5 h-12 z" fill="#8a5529" stroke="#4a2a12" stroke-width=".7"/><line x1="${f(x)}" y1="${f(y-3)}" x2="${f(x)}" y2="${f(y-21)}" stroke="#4a2a12" stroke-width="1.2"/><polygon points="${f(x+.8)},${f(y-20)} ${f(x+.8)},${f(y-5)} ${f(x+9)},${f(y-6)}" fill="#fbf6ea"/><polygon points="${f(x-.8)},${f(y-17)} ${f(x-.8)},${f(y-5)} ${f(x-7)},${f(y-6)}" fill="#e9dfc6"/><path d="M${f(x)} ${f(y-21)} l5 1.5 l-5 1.5z" fill="#d23b2f"/></g>`}
-const SPECIAL={campo:windmill,pradera:barn,montana:mine,bosque:cabin,cantera:kiln,desierto:oasis};
+const SPECIAL={campo:windmill,pradera:barn,montana:mine,bosque:cabin,cantera:kiln,desierto:(x,y)=>ruins(x,y)};
 const DECOPOS=[[-30,-26],[27,-30],[-40,6],[40,4],[-18,32],[20,33],[2,-44],[-42,-14],[44,-14],[-2,44],[-22,-40],[30,20]];
 function deco(t,special,rnd){const out=[];const pos=shuffleR(DECOPOS.slice(),rnd);const n={bosque:12,montana:6,pradera:6,campo:9,cantera:5,desierto:3}[t.terrain];
   pos.slice(0,n).map((p,i)=>({p,sp:special&&i===0,s:.8+rnd()*.3,y:pj(t.x+p[0],t.y+p[1])[1]})).sort((a,b)=>a.y-b.y).forEach(({p:[dx,dy],sp,s})=>{const[x,y]=pj(t.x+dx,t.y+dy);
     if(sp){out.push(SPECIAL[t.terrain](x,y));return}
-    out.push({bosque:()=>tree(x,y,s)+(rnd()<.6?tree(x+6,y+3,s*.75):''),montana:()=>mountain(x,y,s),pradera:()=>sheep(x,y,s*.95)+grass(x+9,y+2),campo:()=>wheat(x,y,s),cantera:()=>bricks(x,y,s*.9),desierto:()=>cactus(x,y,s)}[t.terrain]())});
+    out.push({bosque:()=>tree(x,y,s)+(rnd()<.6?tree(x+6,y+3,s*.75):''),montana:()=>mountain(x,y,s),pradera:()=>sheep(x,y,s*.95)+grass(x+9,y+2)+(rnd()<.3?fence(x-14,y+3):''),campo:()=>rnd()<.3?haystack(x,y,s*.9):wheat(x,y,s),cantera:()=>bricks(x,y,s*.9),desierto:()=>cactus(x,y,s)}[t.terrain]())});
   return out.join('')}
 function token(t){if(!t.num)return'';const[x,y]=pj(t.x,t.y);const red=t.num===6||t.num===8;let p='';const k=pips(t.num);for(let i=0;i<k;i++)p+=`<circle cx="${f(x+(i-(k-1)/2)*3.2)}" cy="${f(y+8.2)}" r="1.15" fill="${red?'#a8261b':'#5a4126'}"/>`;
   return`<g class="tok" id="tk${t.id}"><ellipse cx="${f(x)}" cy="${f(y+5)}" rx="18" ry="12" fill="#000" opacity=".32"/><ellipse cx="${f(x)}" cy="${f(y+2.2)}" rx="17" ry="11.6" fill="#a88a58"/><ellipse cx="${f(x)}" cy="${f(y)}" rx="17" ry="11.6" fill="url(#tok)" stroke="#7a5a2a" stroke-width="1.2"/><ellipse cx="${f(x)}" cy="${f(y)}" rx="13.6" ry="9.1" fill="none" stroke="#a08458" stroke-width=".7" opacity=".7"/><text class="tn ${red?'red':''}" x="${f(x)}" y="${f(y+3.6)}">${t.num}</text>${p}</g>`}
-function pier(ax,ay,bx,by){const L=Math.hypot(bx-ax,by-ay)||1,ux=(bx-ax)/L,uy=(by-ay)/L,nx=-uy*5,ny=ux*5;let s='';
-  const q=[[ax+nx,ay+ny],[bx+nx,by+ny],[bx-nx,by-ny],[ax-nx,ay-ny]];
-  s+=`<polygon points="${ptsStr(q.map(([x,y])=>[x,y+4]))}" fill="#3e2614"/>`;
-  [[bx+nx,by+ny],[bx-nx,by-ny],[(ax+bx)/2+nx,(ay+by)/2+ny],[(ax+bx)/2-nx,(ay+by)/2-ny]].forEach(([x,y])=>{s+=`<rect x="${f(x-1.3)}" y="${f(y)}" width="2.6" height="11" fill="#2e1c0e"/>`});
-  s+=`<polygon points="${ptsStr(q)}" fill="#a87545" stroke="#4a2a12" stroke-width=".9"/>`;
-  for(let d=3;d<L-1;d+=3.4){const x=ax+ux*d,y=ay+uy*d;s+=`<line x1="${f(x+nx*.92)}" y1="${f(y+ny*.92)}" x2="${f(x-nx*.92)}" y2="${f(y-ny*.92)}" stroke="#6b4423" stroke-width=".7" opacity=".8"/>`}
-  return s}
 function drawStatic(){
   let s='';const rnd=mulberry(B.seed||7);
   // mar: olas y brillos por todo el agua
@@ -929,10 +957,16 @@ function drawStatic(){
   B.E.filter(e=>e.tiles.length===1).forEach((e,k)=>{if(k%2)return;const[ax,ay]=pj(B.V[e.a].x,B.V[e.a].y),[bx,by]=pj(B.V[e.b].x,B.V[e.b].y);const t=B.tiles[e.tiles[0]];if((ay+by)/2<pj(t.x,t.y)[1])return;
     for(let i=1;i<=3;i++){const u=i/4,x=ax+(bx-ax)*u,y=ay+(by-ay)*u;const ex=x+(x-pj(t.x,t.y)[0])*.05,ey=y+3;s+=`<rect x="${f(ex-1.6)}" y="${f(ey)}" width="3.2" height="${CL-6}" rx="1" fill="#3a2414" opacity=".9"/><rect x="${f(ex-1.6)}" y="${f(ey)}" width="1.1" height="${CL-6}" fill="#7a5230" opacity=".7"/>`}});
   portEnds.filter(o=>o.b[1]>=o.a[1]).forEach(o=>{s+=pier(o.a[0],o.a[1]+CL*.3,o.b[0],o.b[1]+CL*.55)});
-  // barcos y faro en el agua
+  // vida en el mar: faro, islote con ruinas, barcos, pesqueros con redes, rocas, boyas y peces
   const portPos=B.ports.map(p=>{const e=B.E[p.edge],t=B.tiles[e.tiles[0]];const mx=(B.V[e.a].x+B.V[e.b].x)/2,my=(B.V[e.a].y+B.V[e.b].y)/2;const L=Math.hypot(mx-t.x,my-t.y);return[mx+(mx-t.x)/L*.8*R,my+(my-t.y)/L*.8*R]});
-  const free=[0,1,2,3,4,5].map(k=>{const a=k*Math.PI/3+.3;return[5.0*R*Math.cos(a),4.4*R*Math.sin(a)]}).filter(c=>portPos.every(p=>Math.hypot(p[0]-c[0],p[1]-c[1])>.9*R));
-  shuffleR(free,rnd).slice(0,4).sort((a,b)=>pj(...a)[1]-pj(...b)[1]).forEach((c,i)=>{const[x,y]=pj(...c);s+=i===0?lighthouse(x,y):`<g class="sail" style="animation-delay:${-i*23}s">${boat(x,y,-i*1.1)}</g>`});
+  const cand=[];for(let k=0;k<18;k++){const a=k/18*Math.PI*2+.17;cand.push([5.05*R*Math.cos(a),4.75*R*Math.sin(a)])}
+  const ok=c=>portPos.every(p=>Math.hypot(p[0]-c[0],p[1]-c[1])>1.05*R);const outer=[];for(let k=0;k<16;k++){const a=k/16*Math.PI*2+.4;outer.push([5.5*R*Math.cos(a),5.05*R*Math.sin(a)])}
+  const free=[...shuffleR(cand.filter(ok),rnd),...shuffleR(outer.filter(ok),rnd)];
+  const kinds=['light','ship','fish','ruin','fish','ship','rocks','fish','buoy','fish','rocks','ship','buoy','fish','fish'];
+  free.slice(0,kinds.length).map((c,i)=>({c,k:kinds[i]})).sort((a,b)=>pj(...a.c)[1]-pj(...b.c)[1]).forEach(({c,k},i)=>{const[x,y]=pj(...c);
+    s+=k==='light'?lighthouse(x,y):k==='ruin'?ruinIslet(x,y):k==='ship'?`<g class="sail" style="animation-delay:${-i*23}s">${boat(x,y,-i*1.1)}</g>`:k==='fish'?fishingBoat(x,y,(-i*.7).toFixed(1),rnd()<.5):k==='rocks'?seaRocks(x,y):buoy(x,y,(-i*.5).toFixed(1))});
+  for(let i=0;i<6;i++){const a=rnd()*Math.PI*2,rr=4.6+rnd()*.7;const[x,y]=pj(rr*R*Math.cos(a),rr*.92*R*Math.sin(a));s+=fishJ(x,y,(rnd()*7).toFixed(1))}
+  s+=compass(-300,176);
   // hexágonos (de atrás hacia adelante), apenas elevados y separados por una línea oscura
   order.forEach(t=>{const c=hexCorners(t.x,t.y,R*.965).map(p=>pj(...p));const T=TER[t.terrain];
     s+=sides(c,pj(t.x,t.y)[1],TH*.7,T.side);
@@ -951,27 +985,100 @@ function drawStatic(){
   [[0,-170,0],[30,-150,-9],[-60,140,-17]].forEach(([x,y,d])=>{a+=`<g class="gull" style="animation-delay:${d}s"><path class="flap" d="M${x-5} ${y} q2.5 -3 5 0 q2.5 -3 5 0" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round"/></g>`});
   $('#gAmb').innerHTML=a;
 }
-function house(x,y,c,d){const w=15,h=10,dp=6;return`<g filter="url(#sh)"><polygon points="${f(x+w/2)},${f(y)} ${f(x+w/2+dp)},${f(y-dp*.6)} ${f(x+w/2+dp)},${f(y-h-dp*.6)} ${f(x+w/2)},${f(y-h)}" fill="${d}"/>
-  <rect x="${f(x-w/2)}" y="${f(y-h)}" width="${w}" height="${h}" fill="${c}" stroke="${d}" stroke-width=".8"/><rect x="${f(x-2)}" y="${f(y-6)}" width="4" height="6" fill="${d}"/>
-  <polygon points="${f(x)},${f(y-h-9)} ${f(x+w/2+1)},${f(y-h)} ${f(x+w/2+1+dp)},${f(y-h-dp*.6)} ${f(x+dp)},${f(y-h-9-dp*.6)}" fill="${d}"/>
-  <polygon points="${f(x-w/2-1)},${f(y-h)} ${f(x+w/2+1)},${f(y-h)} ${f(x)},${f(y-h-9)}" fill="${c}" stroke="${d}" stroke-width=".8"/></g>`}
-function city(x,y,c,d){const w=24,h=10,dp=6,tx=x-6;return`<g filter="url(#sh)"><polygon points="${f(x+w/2)},${f(y)} ${f(x+w/2+dp)},${f(y-dp*.6)} ${f(x+w/2+dp)},${f(y-h-dp*.6)} ${f(x+w/2)},${f(y-h)}" fill="${d}"/>
-  <rect x="${f(x-w/2)}" y="${f(y-h)}" width="${w}" height="${h}" fill="${c}" stroke="${d}" stroke-width=".8"/>
-  <polygon points="${f(x-w/2)},${f(y-h)} ${f(x+w/2)},${f(y-h)} ${f(x+w/2+dp)},${f(y-h-dp*.6)} ${f(x-w/2+dp)},${f(y-h-dp*.6)}" fill="${d}" opacity=".8"/>
-  <rect x="${f(tx-6)}" y="${f(y-h-14)}" width="12" height="${14+h}" fill="${c}" stroke="${d}" stroke-width=".8"/><polygon points="${f(tx+6)},${f(y)} ${f(tx+6+4)},${f(y-3)} ${f(tx+10)},${f(y-h-17)} ${f(tx+6)},${f(y-h-14)}" fill="${d}"/>
-  <polygon points="${f(tx-7)},${f(y-h-14)} ${f(tx+7)},${f(y-h-14)} ${f(tx)},${f(y-h-24)}" fill="${c}" stroke="${d}" stroke-width=".8"/>
-  <rect x="${f(tx-2)}" y="${f(y-h-9)}" width="4" height="5" fill="${d}"/><rect x="${f(x+3)}" y="${f(y-6)}" width="4" height="6" fill="${d}"/>
-  <rect x="${f(x+7)}" y="${f(y-h-7)}" width="3" height="5" fill="${d}"/><circle class="smoke" cx="${f(x+8.5)}" cy="${f(y-h-9)}" r="2" fill="#e8e8e8"/><circle class="smoke" style="animation-delay:-1.3s" cx="${f(x+8.5)}" cy="${f(y-h-9)}" r="2" fill="#e8e8e8"/></g>`}
-function robberSvg(x,y){return`<g filter="url(#sh)"><ellipse cx="${f(x)}" cy="${f(y)}" rx="9" ry="4" fill="#1a1a1e"/><path d="M${f(x-8)} ${f(y)} Q${f(x-7)} ${f(y-14)} ${f(x-4)} ${f(y-19)} L${f(x+4)} ${f(y-19)} Q${f(x+7)} ${f(y-14)} ${f(x+8)} ${f(y)} Z" fill="#2c2c33"/><circle cx="${f(x)}" cy="${f(y-24)}" r="6.5" fill="#33333b"/><path d="M${f(x-6)} ${f(y-25)} h12" stroke="#c9302a" stroke-width="2.5"/><circle cx="${f(x-2)}" cy="${f(y-26)}" r="1.6" fill="#555" opacity=".7"/></g>`}
+// ====================== Arte medieval: íconos, casas, castillos, bandido, muelles y mar ======================
+const RICON={
+  madera:'<svg viewBox="0 0 32 32"><g stroke="#2e1a0b" stroke-width="1"><path d="M4 19h18a4.5 4.5 0 0 1 0 9H4a4.5 4.5 0 0 1 0-9z" fill="#8b5a2b"/><ellipse cx="22" cy="23.5" rx="3.6" ry="4.5" fill="#e3b779"/><path d="M8 9h17a4.5 4.5 0 0 1 0 9H8a4.5 4.5 0 0 1 0-9z" fill="#9c6633"/><ellipse cx="25" cy="13.5" rx="3.6" ry="4.5" fill="#ecc489"/></g><g fill="none" stroke="#a0703c" stroke-width=".8"><ellipse cx="22" cy="23.5" rx="2" ry="2.6"/><ellipse cx="25" cy="13.5" rx="2" ry="2.6"/></g><path d="M6 22.5h11M5 25.5h9M10 12.5h11M11 15.5h8" stroke="#5e3a18" stroke-width=".9" opacity=".7"/><path d="M14 9.2l-2.4-3.4 3.4 1" stroke="#3f7a2e" stroke-width="1.4" fill="none"/></svg>',
+  arcilla:'<svg viewBox="0 0 32 32"><g stroke="#5a2410" stroke-width="1"><rect x="3" y="20" width="12" height="7" rx="1" fill="#c25a2c"/><rect x="16" y="20" width="12" height="7" rx="1" fill="#b4502a"/><rect x="9" y="12" width="12" height="7" rx="1" fill="#cf6a37"/><rect x="22" y="12" width="7" height="7" rx="1" fill="#a9482a"/><rect x="4" y="12" width="4" height="7" rx="1" fill="#a9482a"/><rect x="14" y="4" width="12" height="7" rx="1" fill="#d87440"/></g><path d="M4 21.6h10M17 21.6h10M10 13.6h10M15 5.6h10" stroke="#f3a676" stroke-width="1.1" opacity=".85"/><circle cx="7" cy="24" r=".7" fill="#7a3216"/><circle cx="21" cy="25" r=".7" fill="#7a3216"/><circle cx="14" cy="16" r=".7" fill="#7a3216"/><circle cx="20" cy="8" r=".7" fill="#7a3216"/></svg>',
+  lana:'<svg viewBox="0 0 32 32"><g fill="#f6f1e4" stroke="#9a9078" stroke-width="1"><circle cx="10" cy="18" r="6"/><circle cx="21.5" cy="18" r="6.5"/><circle cx="15.5" cy="11" r="6.5"/><circle cx="15.5" cy="22.5" r="6"/></g><path d="M12 11c2-2 5-2 7 0M7.5 18c1.5-1.5 3.5-1.5 5 0M18.5 19c1.8-2 4.5-2 6 0M13 23.5c1.5-1.4 3.5-1.4 5 0" stroke="#cbc1a6" stroke-width="1" fill="none"/><circle cx="13.5" cy="9" r="1.7" fill="#fff"/><path d="M24 24c3 1 5 0 5-2" stroke="#8a6a32" stroke-width="1.1" fill="none"/></svg>',
+  trigo:'<svg viewBox="0 0 32 32"><g stroke="#8a6414" stroke-width="1.1" fill="none"><path d="M16 29V12M16 29l-6-15M16 29l6-15M16 29l-9-10M16 29l9-10"/></g><g fill="#f2c94c" stroke="#a87a17" stroke-width=".7"><ellipse cx="16" cy="8" rx="2.4" ry="5"/><ellipse cx="9.5" cy="11" rx="2.2" ry="4.6" transform="rotate(-22 9.5 11)"/><ellipse cx="22.5" cy="11" rx="2.2" ry="4.6" transform="rotate(22 22.5 11)"/><ellipse cx="6.5" cy="17" rx="2" ry="4" transform="rotate(-45 6.5 17)"/><ellipse cx="25.5" cy="17" rx="2" ry="4" transform="rotate(45 25.5 17)"/></g><path d="M16 4.5v7M9.8 7l-.6 6.6M22.2 7l.6 6.6" stroke="#c99a1c" stroke-width=".6"/><rect x="11.5" y="21" width="9" height="3.2" rx="1" fill="#b5462b" stroke="#6e2416" stroke-width=".7"/></svg>',
+  piedra:'<svg viewBox="0 0 32 32"><g stroke="#3e4046" stroke-width="1"><path d="M3 26l3-9 7-3 6 4 1 8z" fill="#8f939b"/><path d="M14 27l2-10 7-5 6 6-1 9z" fill="#a7abb3"/><path d="M9 15l4-7 7-1 3 6-5 4z" fill="#bdc1c8"/></g><path d="M6 17l7-3M16 17l7-5M13 8l7-1" stroke="#eef0f3" stroke-width="1.1" opacity=".85"/><path d="M19 22l3 2M8 22l3-1" stroke="#5c5f66" stroke-width=".9"/><circle cx="22" cy="20" r="1" fill="#7fc7e0"/><circle cx="11" cy="20.5" r=".8" fill="#7fc7e0"/></svg>'};
+const DEVICON='<svg viewBox="0 0 32 32"><rect x="8" y="6" width="17" height="20" rx="2" fill="#efe2c4" stroke="#6b4826"/><path d="M5 6.5a2.6 2.6 0 0 1 5.2 0v19a2.6 2.6 0 0 1-5.2 0z" fill="#d8c59c" stroke="#6b4826"/><path d="M13 11h9M13 15h9M13 19h6" stroke="#8a6a32" stroke-width="1.2"/><circle cx="22" cy="23" r="3.2" fill="#9b2c20" stroke="#5e1810" stroke-width=".6"/></svg>';
+const ricon=r=>RICON[r]||'';
+const pt=(x,y)=>`${f(x)},${f(y)}`;
+// casa de entramado de madera: techo del color del jugador, chimenea con humo
+function house(x,y,c,d){const w=16,h=11,dp=6,ry=dp*.6,X0=x-w/2,X1=x+w/2,T=y-h,Gb=T-10,K='#3a2414';
+  const sl=(k)=>{const ax=x+(X1+1.6-x)*k,ay=Gb+(T+.6-Gb)*k;return`<line x1="${f(ax)}" y1="${f(ay)}" x2="${f(ax+dp)}" y2="${f(ay-ry)}" stroke="${d}" stroke-width=".7" opacity=".8"/>`};
+  const chx=x+(X1-x)*.42+dp*.55,chy=Gb+(T-Gb)*.42-ry*.55;
+  return`<g filter="url(#sh)"><polygon points="${pt(X1,y)} ${pt(X1+dp,y-ry)} ${pt(X1+dp,T-ry)} ${pt(X1,T)}" fill="#c4ae86" stroke="${K}" stroke-width=".7"/>
+  <path d="M${f(X1+dp/2)} ${f(y-ry/2)}V${f(T-ry/2)}M${f(X1)} ${f(T+4)}L${f(X1+dp)} ${f(T+4-ry)}" stroke="${K}" stroke-width=".8"/>
+  <rect x="${f(X0)}" y="${f(T)}" width="${w}" height="${h}" fill="#efe2c4" stroke="${K}" stroke-width=".8"/><rect x="${f(X0)}" y="${f(y-2.2)}" width="${w}" height="2.2" fill="#8d867a" stroke="${K}" stroke-width=".5"/>
+  <path d="M${f(X0)} ${f(T+4)}H${f(X1)}M${f(X0+4)} ${f(T)}V${f(y-2.2)}M${f(X1-4)} ${f(T)}V${f(y-2.2)}M${f(X0)} ${f(y-2.2)}L${f(X0+4)} ${f(T+4)}M${f(X1)} ${f(y-2.2)}L${f(X1-4)} ${f(T+4)}" stroke="${K}" stroke-width="1" fill="none"/>
+  <path d="M${f(x-2)} ${f(y-2.2)}V${f(y-6.3)}A2 2 0 0 1 ${f(x+2)} ${f(y-6.3)}V${f(y-2.2)}Z" fill="#5a3418" stroke="${K}" stroke-width=".5"/>
+  <rect x="${f(X0+.9)}" y="${f(T+.9)}" width="2.3" height="2.3" fill="#f3c35a" stroke="${K}" stroke-width=".4"/><rect x="${f(X1-3.2)}" y="${f(T+.9)}" width="2.3" height="2.3" fill="#f3c35a" stroke="${K}" stroke-width=".4"/>
+  <polygon points="${pt(X0-1,T)} ${pt(X1+1,T)} ${pt(x,Gb)}" fill="#efe2c4" stroke="${K}" stroke-width=".8"/><path d="M${f(x)} ${f(Gb+2)}V${f(T)}M${f(x-3.5)} ${f(T-3.5)}H${f(x+3.5)}" stroke="${K}" stroke-width=".8"/><rect x="${f(x-1.2)}" y="${f(T-3)}" width="2.4" height="2" fill="#f3c35a" stroke="${K}" stroke-width=".3"/>
+  <polygon points="${pt(x,Gb)} ${pt(X1+1.6,T+.6)} ${pt(X1+1.6+dp,T+.6-ry)} ${pt(x+dp,Gb-ry)}" fill="${c}" stroke="${d}" stroke-width=".8"/>${sl(.33)}${sl(.66)}
+  <path d="M${f(X0-1.6)} ${f(T+.6)}L${f(x)} ${f(Gb)}L${f(X1+1.6)} ${f(T+.6)}" stroke="${d}" stroke-width="2.4" fill="none" stroke-linejoin="round"/><path d="M${f(X0-1.6)} ${f(T+.6)}L${f(x)} ${f(Gb)}L${f(X1+1.6)} ${f(T+.6)}" stroke="${c}" stroke-width="1.1" fill="none" stroke-linejoin="round"/>
+  <rect x="${f(chx)}" y="${f(chy-5)}" width="2.8" height="6" fill="#7d7468" stroke="${K}" stroke-width=".5"/><circle class="smoke" cx="${f(chx+1.4)}" cy="${f(chy-7)}" r="1.8" fill="#e8e6e0"/><circle class="smoke" style="animation-delay:-1.4s" cx="${f(chx+1.4)}" cy="${f(chy-7)}" r="1.8" fill="#e8e6e0"/></g>`}
+// castillo de piedra con almenas, torre redonda con techo cónico y bandera del jugador
+function city(x,y,c,d){const kx0=x-5,kx1=x+13,T=y-13,dp=6,ry=3.6,S='#bdb5a5',S2='#8f877a',K='#3a2e22',tx=x-9,TT=y-24;let m='';
+  for(let i=0;i<5;i++)m+=`<rect x="${f(kx0+i*4)}" y="${f(T-3)}" width="2.6" height="3" fill="${S}" stroke="${K}" stroke-width=".5"/>`;
+  for(let i=1;i<3;i++)m+=`<polygon points="${pt(kx1+dp*i/3-1,T-ry*i/3)} ${pt(kx1+dp*i/3+.6,T-ry*i/3-1)} ${pt(kx1+dp*i/3+.6,T-ry*i/3-4)} ${pt(kx1+dp*i/3-1,T-ry*i/3-3)}" fill="${S2}" stroke="${K}" stroke-width=".4"/>`;
+  let tm='';for(let i=0;i<3;i++)tm+=`<rect x="${f(tx-5.5+i*4)}" y="${f(TT-3)}" width="2.6" height="3" fill="${S}" stroke="${K}" stroke-width=".5"/>`;
+  return`<g filter="url(#sh)"><polygon points="${pt(kx1,y)} ${pt(kx1+dp,y-ry)} ${pt(kx1+dp,T-ry)} ${pt(kx1,T)}" fill="${S2}" stroke="${K}" stroke-width=".7"/>
+  <polygon points="${pt(kx0,T)} ${pt(kx1,T)} ${pt(kx1+dp,T-ry)} ${pt(kx0+dp,T-ry)}" fill="#a39b8c"/>
+  <rect x="${f(kx0)}" y="${f(T)}" width="${f(kx1-kx0)}" height="13" fill="${S}" stroke="${K}" stroke-width=".7"/>
+  <path d="M${f(kx0)} ${f(T+4.3)}H${f(kx1)}M${f(kx0)} ${f(T+8.6)}H${f(kx1)}M${f(kx0+3)} ${f(T)}v4.3M${f(kx0+9)} ${f(T)}v4.3M${f(kx0+15)} ${f(T)}v4.3M${f(kx0+6)} ${f(T+4.3)}v4.3M${f(kx0+12)} ${f(T+4.3)}v4.3" stroke="#958d7e" stroke-width=".55"/>${m}
+  <path d="M${f(x+1.5)} ${f(y)}V${f(y-5)}A2.5 2.5 0 0 1 ${f(x+6.5)} ${f(y-5)}V${f(y)}Z" fill="#3b2616" stroke="${K}" stroke-width=".5"/><path d="M${f(x+2.7)} ${f(y-6.5)}V${f(y)}M${f(x+4)} ${f(y-7.4)}V${f(y)}M${f(x+5.3)} ${f(y-6.5)}V${f(y)}" stroke="#7a6a52" stroke-width=".5"/>
+  <path d="M${f(kx1-5)} ${f(T+1)}h4v6.5l-2-1.6l-2 1.6z" fill="${c}" stroke="${d}" stroke-width=".5"/>
+  <rect x="${f(tx-5.5)}" y="${f(TT)}" width="11" height="${f(y-TT)}" fill="${S}" stroke="${K}" stroke-width=".7"/><rect x="${f(tx+1.5)}" y="${f(TT)}" width="4" height="${f(y-TT)}" fill="${S2}" opacity=".75"/>${tm}
+  <rect x="${f(tx-.7)}" y="${f(TT+7)}" width="1.4" height="3.6" fill="${K}"/><rect x="${f(tx-.7)}" y="${f(TT+14)}" width="1.4" height="3.6" fill="${K}"/>
+  <polygon points="${pt(tx-7,TT-3)} ${pt(tx+7,TT-3)} ${pt(tx,TT-15)}" fill="${c}" stroke="${d}" stroke-width=".7"/><polygon points="${pt(tx,TT-15)} ${pt(tx+7,TT-3)} ${pt(tx,TT-3)}" fill="${d}" opacity=".55"/>
+  <line x1="${f(tx)}" y1="${f(TT-15)}" x2="${f(tx)}" y2="${f(TT-23)}" stroke="#3a2414" stroke-width=".9"/><path class="flagW" d="M${f(tx)} ${f(TT-23)}l7.5 1.8l-7.5 1.8z" fill="${c}" stroke="${d}" stroke-width=".5"/></g>`}
+// el bandido: enmascarado, de negro, sombrero de ala ancha, capa y dos revólveres en el cinturón
+function robberSvg(x,y){const sk='#d9a27a',bk='#17171c';
+  const gun=s=>`<path d="M${f(x+s*5.2)} ${f(y-10)}l${f(s*1.7)} 4.6l${f(-s*1.6)} .7l${f(-s*1.2)} -4.5z" fill="#5a3a1e" stroke="#2a1a0c" stroke-width=".4"/><line x1="${f(x+s*5.7)}" y1="${f(y-10.2)}" x2="${f(x+s*6.9)}" y2="${f(y-7)}" stroke="#cfd3d9" stroke-width="1.1"/><path d="M${f(x+s*4.9)} ${f(y-12.6)}l${f(s*2.2)} .9l${f(-s*.6)} 1.7l${f(-s*2)} -.8z" fill="#3b2a1e" stroke="#1a120a" stroke-width=".4"/>`;
+  return`<g filter="url(#sh)"><ellipse cx="${f(x)}" cy="${f(y)}" rx="9.5" ry="3.2" fill="#000" opacity=".35"/>
+  <path d="M${f(x-5.5)} ${f(y-20)}Q${f(x-12)} ${f(y-9)} ${f(x-9.5)} ${f(y-1)}L${f(x+9.5)} ${f(y-1)}Q${f(x+12)} ${f(y-9)} ${f(x+5.5)} ${f(y-20)}Z" fill="#0d0d11"/><path d="M${f(x-9.5)} ${f(y-1)}l3 -1.6l3 1.6l3 -1.6l3 1.6l3 -1.6l3 1.6" fill="none" stroke="#2a2a33" stroke-width=".6"/>
+  <rect x="${f(x-3.3)}" y="${f(y-8.5)}" width="2.7" height="7" fill="#1d1d24"/><rect x="${f(x+.6)}" y="${f(y-8.5)}" width="2.7" height="7" fill="#1d1d24"/><rect x="${f(x-3.8)}" y="${f(y-2.6)}" width="3.5" height="2.6" rx=".6" fill="#09090b"/><rect x="${f(x+.4)}" y="${f(y-2.6)}" width="3.5" height="2.6" rx=".6" fill="#09090b"/>
+  <path d="M${f(x-5)} ${f(y-19.5)}L${f(x+5)} ${f(y-19.5)}L${f(x+4.6)} ${f(y-8)}L${f(x-4.6)} ${f(y-8)}Z" fill="#23232b"/><path d="M${f(x-1.4)} ${f(y-19.5)}L${f(x)} ${f(y-16)}L${f(x+1.4)} ${f(y-19.5)}" fill="#e9e4d8"/>
+  <rect x="${f(x-5)}" y="${f(y-10.8)}" width="10" height="1.9" fill="#6b4423"/><rect x="${f(x-1)}" y="${f(y-11)}" width="2" height="2.3" fill="#dcd6c6" stroke="#6b6658" stroke-width=".3"/>${gun(-1)}${gun(1)}
+  <path d="M${f(x-4.8)} ${f(y-18.6)}L${f(x-6.6)} ${f(y-13)}M${f(x+4.8)} ${f(y-18.6)}L${f(x+6.6)} ${f(y-13)}" stroke="#23232b" stroke-width="2.3" stroke-linecap="round"/><circle cx="${f(x-6.6)}" cy="${f(y-12.6)}" r="1.1" fill="${sk}"/><circle cx="${f(x+6.6)}" cy="${f(y-12.6)}" r="1.1" fill="${sk}"/>
+  <circle cx="${f(x)}" cy="${f(y-22.6)}" r="3.6" fill="${sk}"/><rect x="${f(x-4.1)}" y="${f(y-24.4)}" width="8.2" height="2.5" rx="1.1" fill="#0b0b0e"/><ellipse cx="${f(x-1.6)}" cy="${f(y-23.2)}" rx=".85" ry=".6" fill="#fff"/><ellipse cx="${f(x+1.6)}" cy="${f(y-23.2)}" rx=".85" ry=".6" fill="#fff"/>
+  <path d="M${f(x-4)} ${f(y-23.4)}l-2.4 1.4M${f(x+4)} ${f(y-23.4)}l2 1.6" stroke="#0b0b0e" stroke-width=".8"/><path d="M${f(x-1.9)} ${f(y-20.7)}q1.9 -1.1 3.8 0" stroke="#2a1a10" stroke-width=".9" fill="none"/>
+  <ellipse cx="${f(x)}" cy="${f(y-25.9)}" rx="8.6" ry="2.3" fill="${bk}"/><path d="M${f(x-4)} ${f(y-26)}L${f(x-3.4)} ${f(y-31)}L${f(x+3.4)} ${f(y-31)}L${f(x+4)} ${f(y-26)}Z" fill="#1d1d24"/><rect x="${f(x-4)}" y="${f(y-27.8)}" width="8" height="1.3" fill="#40404b"/><ellipse cx="${f(x)}" cy="${f(y-31)}" rx="3.4" ry=".9" fill="#26262e"/></g>`}
+// muelle de tablones con postes, barriles, cajón y farol
+function pier(ax,ay,bx,by){const L=Math.hypot(bx-ax,by-ay)||1,ux=(bx-ax)/L,uy=(by-ay)/L,nx=-uy*5,ny=ux*5;let s='';
+  const q=[[ax+nx,ay+ny],[bx+nx,by+ny],[bx-nx,by-ny],[ax-nx,ay-ny]];
+  s+=`<polygon points="${ptsStr(q.map(([x,y])=>[x,y+4]))}" fill="#3e2614"/>`;
+  for(let k=0;k<=3;k++){const u=k/3,cx=ax+(bx-ax)*u,cy=ay+(by-ay)*u;[[1],[-1]].forEach(([sg])=>{s+=`<rect x="${f(cx+nx*sg-1.4)}" y="${f(cy+ny*sg)}" width="2.8" height="12" fill="#2e1c0e"/><ellipse cx="${f(cx+nx*sg)}" cy="${f(cy+ny*sg+12)}" rx="2.6" ry=".9" fill="#d9f2f2" opacity=".45"/>`})}
+  s+=`<polygon points="${ptsStr(q)}" fill="#a87545" stroke="#4a2a12" stroke-width=".9"/>`;
+  for(let dd=3;dd<L-1;dd+=3.4){const x=ax+ux*dd,y=ay+uy*dd;s+=`<line x1="${f(x+nx*.92)}" y1="${f(y+ny*.92)}" x2="${f(x-nx*.92)}" y2="${f(y-ny*.92)}" stroke="#6b4423" stroke-width=".7" opacity=".85"/>`}
+  // barriles y cajón sobre el muelle
+  const at=(u,side)=>[ax+(bx-ax)*u+nx*side*.55,ay+(by-ay)*u+ny*side*.55];
+  const[b1x,b1y]=at(.55,1),[b2x,b2y]=at(.42,1),[cx2,cy2]=at(.5,-1),[lx,ly]=at(.22,-1);
+  [[b2x,b2y],[b1x,b1y]].forEach(([x,y])=>{s+=`<rect x="${f(x-2.2)}" y="${f(y-5)}" width="4.4" height="5" rx="1.4" fill="#8a5a2c" stroke="#3a2210" stroke-width=".5"/><path d="M${f(x-2.2)} ${f(y-3.6)}h4.4M${f(x-2.2)} ${f(y-1.4)}h4.4" stroke="#3a2a1e" stroke-width=".6"/><ellipse cx="${f(x)}" cy="${f(y-5)}" rx="2.2" ry=".9" fill="#a8743e" stroke="#3a2210" stroke-width=".4"/>`});
+  s+=`<rect x="${f(cx2-2.6)}" y="${f(cy2-4.4)}" width="5.2" height="4.4" fill="#b98a52" stroke="#4a2a12" stroke-width=".5"/><path d="M${f(cx2-2.6)} ${f(cy2-4.4)}l5.2 4.4M${f(cx2+2.6)} ${f(cy2-4.4)}l-5.2 4.4" stroke="#6b4423" stroke-width=".5"/>`;
+  s+=`<line x1="${f(lx)}" y1="${f(ly)}" x2="${f(lx)}" y2="${f(ly-11)}" stroke="#2e1c0e" stroke-width="1"/><rect x="${f(lx-1.5)}" y="${f(ly-13.5)}" width="3" height="3" fill="#ffd36b" stroke="#2e1c0e" stroke-width=".5"/><circle class="beam" cx="${f(lx)}" cy="${f(ly-12)}" r="4.5" fill="#ffe08a" opacity=".35"/>`;
+  return s}
+// barca de pesca con su red y las boyas
+function fishingBoat(x,y,dl,flip){const sg=flip?-1:1;let fl='';for(let i=0;i<5;i++){const u=i/4,nx=x+sg*(7+u*24),ny=y+1+Math.sin(u*Math.PI)*5-u*1.5;fl+=`<circle cx="${f(nx)}" cy="${f(ny)}" r="1.3" fill="${i%2?'#f2efe6':'#e0573d'}" stroke="#5a2a1a" stroke-width=".3"/>`}
+  return`<g class="bob" style="animation-delay:${dl}s"><g class="net"><path d="M${f(x+sg*7)} ${f(y+1)}q${f(sg*12)} 11 ${f(sg*24)} -1.5" fill="rgba(232,220,192,.12)" stroke="#e8dcc0" stroke-width=".8" stroke-dasharray="1.6 1.2"/><path d="M${f(x+sg*9)} ${f(y+2)}l${f(sg*4)} 5M${f(x+sg*15)} ${f(y+5)}l${f(sg*2)} 3M${f(x+sg*21)} ${f(y+4)}l${f(sg*1)} 3" stroke="#e8dcc0" stroke-width=".5" opacity=".7"/>${fl}</g>
+  <ellipse cx="${f(x)}" cy="${f(y+2)}" rx="11" ry="2.4" fill="#0c3a40" opacity=".4"/><path d="M${f(x-9)} ${f(y-2)}h18l-3 4h-12z" fill="#7a4a24" stroke="#3a2210" stroke-width=".6"/><path d="M${f(x-9)} ${f(y-2)}h18" stroke="#a8743e" stroke-width=".8"/>
+  <rect x="${f(x-1.2)}" y="${f(y-8)}" width="2.6" height="5.6" rx=".8" fill="#5f6e3a"/><circle cx="${f(x+.1)}" cy="${f(y-9.4)}" r="1.5" fill="#d9a27a"/><path d="M${f(x-1.6)} ${f(y-10.4)}h3.4l-1.7 -1.6z" fill="#8a5a2c"/>
+  <line x1="${f(x+sg*1)}" y1="${f(y-6.5)}" x2="${f(x+sg*7)}" y2="${f(y-1.2)}" stroke="#3a2210" stroke-width=".9"/><line x1="${f(x-sg*5)}" y1="${f(y-1)}" x2="${f(x-sg*10)}" y2="${f(y+3.5)}" stroke="#6b4423" stroke-width="1"/></g>`}
+function seaRocks(x,y){return`<g><ellipse class="foam" cx="${f(x)}" cy="${f(y+2)}" rx="15" ry="4.5" fill="none" stroke="#e6f6f4" stroke-width="1.4" opacity=".55"/><path d="M${f(x-11)} ${f(y+2)}l3 -6l5 -2l4 3l2 5z" fill="#6f6d66" stroke="#3e3d39" stroke-width=".6"/><path d="M${f(x-2)} ${f(y+2)}l2 -9l6 -2l5 6l-1 5z" fill="#86847c" stroke="#3e3d39" stroke-width=".6"/><path d="M${f(x)} ${f(y-7)}l6 -2" stroke="#c9c7bf" stroke-width=".8"/><circle cx="${f(x+4)}" cy="${f(y-6)}" r="1.1" fill="#fff"/></g>`}
+function buoy(x,y,dl){return`<g class="bob" style="animation-delay:${dl}s"><ellipse cx="${f(x)}" cy="${f(y+1)}" rx="4.5" ry="1.3" fill="#e6f6f4" opacity=".4"/><path d="M${f(x-3)} ${f(y)}l3 -8l3 8z" fill="#d9493a" stroke="#5a1a12" stroke-width=".5"/><path d="M${f(x-1.9)} ${f(y-3)}h3.8" stroke="#f4efe2" stroke-width="1.4"/><line x1="${f(x)}" y1="${f(y-8)}" x2="${f(x)}" y2="${f(y-11)}" stroke="#3a2a1e" stroke-width=".7"/><circle class="beam" cx="${f(x)}" cy="${f(y-11.5)}" r="1.3" fill="#ffe08a"/></g>`}
+function fishJ(x,y,dl){return`<g><ellipse class="ripple" style="animation-delay:${dl}s" cx="${f(x+6)}" cy="${f(y)}" rx="5" ry="1.4" fill="none" stroke="#e6f6f4" stroke-width=".8"/><g class="fishJ" style="animation-delay:${dl}s"><path d="M${f(x)} ${f(y)}q2.4 -1.8 4.8 0q-2.4 1.8 -4.8 0zM${f(x+4.8)} ${f(y)}l2.2 -1.6v3.2z" fill="#b9dfe6" stroke="#4d7f88" stroke-width=".3"/></g></g>`}
+function ruinIslet(x,y){return`<g><ellipse class="foam" cx="${f(x)}" cy="${f(y+3)}" rx="22" ry="6" fill="none" stroke="#e6f6f4" stroke-width="1.4" opacity=".5"/><path d="M${f(x-19)} ${f(y+3)}q4 -8 12 -9q9 -2 15 2q6 3 9 7z" fill="#6d5a44" stroke="#3a2a1a" stroke-width=".7"/><path d="M${f(x-15)} ${f(y-3)}q8 -6 17 -5q6 1 9 4" fill="#6f9a45" stroke="#3f6a2a" stroke-width=".6"/>
+  <path d="M${f(x-3)} ${f(y-3)}V${f(y-21)}l2 -2l1.5 2l2 -3l1.5 3V${f(y-3)}z" fill="#b5ad9d" stroke="#4a4236" stroke-width=".6"/><rect x="${f(x-.6)}" y="${f(y-15)}" width="1.6" height="3" fill="#3a2e22"/><path d="M${f(x+5)} ${f(y-3)}v-6h3v6M${f(x+9.5)} ${f(y-3)}v-4" stroke="#8f877a" stroke-width="1.6"/>${tree(x-11,y-2,.55)}</g>`}
+function compass(x,y){const r=21;return`<g opacity=".78" transform="rotate(${f(ROT)} ${f(x)} ${f(y)})"><circle cx="${f(x)}" cy="${f(y)}" r="${r}" fill="rgba(242,231,204,.16)" stroke="#e0c98e" stroke-width="1"/><circle cx="${f(x)}" cy="${f(y)}" r="${r-4}" fill="none" stroke="#e0c98e" stroke-width=".5" stroke-dasharray="1.5 2"/>
+  <path d="M${f(x)} ${f(y-r+1)}L${f(x+4)} ${f(y)}L${f(x)} ${f(y+r-1)}L${f(x-4)} ${f(y)}Z" fill="#e8d6a6" stroke="#6b4826" stroke-width=".6"/><path d="M${f(x-r+1)} ${f(y)}L${f(x)} ${f(y-4)}L${f(x+r-1)} ${f(y)}L${f(x)} ${f(y+4)}Z" fill="#c9a25a" stroke="#6b4826" stroke-width=".6"/><path d="M${f(x)} ${f(y-r+1)}L${f(x+4)} ${f(y)}L${f(x)} ${f(y)}Z" fill="#9b2c20"/>
+  <text x="${f(x)}" y="${f(y-r-3)}" text-anchor="middle" font-family="Cormorant Garamond,serif" font-weight="700" font-size="11" fill="#f2e7cc">N</text></g>`}
+function haystack(x,y,s=1){return`<g><ellipse cx="${f(x)}" cy="${f(y)}" rx="${7*s}" ry="${2*s}" fill="#000" opacity=".2"/><path d="M${f(x-7*s)} ${f(y)}Q${f(x-6*s)} ${f(y-11*s)} ${f(x)} ${f(y-12*s)}Q${f(x+6*s)} ${f(y-11*s)} ${f(x+7*s)} ${f(y)}Z" fill="#e2bd5a" stroke="#9c7a24" stroke-width=".6"/><path d="M${f(x-5*s)} ${f(y-4*s)}q5 -2 10 0M${f(x-4*s)} ${f(y-8*s)}q4 -2 8 0" stroke="#b8902e" stroke-width=".7" fill="none"/></g>`}
+function fence(x,y){return`<g stroke="#7a5230" stroke-width="1"><path d="M${f(x)} ${f(y)}v-5M${f(x+5)} ${f(y-1)}v-5M${f(x+10)} ${f(y-2)}v-5M${f(x)} ${f(y-2)}l10 -2M${f(x)} ${f(y-4)}l10 -2" fill="none"/></g>`}
+function ruins(x,y){return`<g><ellipse cx="${f(x)}" cy="${f(y)}" rx="14" ry="3.4" fill="#000" opacity=".18"/><path d="M${f(x-11)} ${f(y)}V${f(y-12)}a5 5 0 0 1 10 0V${f(y)}h-2.6V${f(y-11)}a2.4 2.4 0 0 0 -4.8 0V${f(y)}z" fill="#cbbf9f" stroke="#6b5f48" stroke-width=".6"/><path d="M${f(x+2)} ${f(y)}V${f(y-9)}l1.6 -2l1.4 1.4l1.6 -2.4V${f(y)}z" fill="#bfb393" stroke="#6b5f48" stroke-width=".6"/><path d="M${f(x+9)} ${f(y)}l2 -3l3 1l1 2z" fill="#a89c80"/>${cactus(x+12,y-1,.55)}</g>`}
+// edificios y caminos de los jugadores, con colocación suave
 let fresh=new Set();
+// edificios y caminos de los jugadores, con colocación suave
 function drawDyn(){
   let s='';
   B.E.forEach(e=>{if(e.road===null)return;const C=COLORS[G.players[e.road].col];let[ax,ay]=pj(B.V[e.a].x,B.V[e.a].y),[bx,by]=pj(B.V[e.b].x,B.V[e.b].y);
-    const k=.17;const x1=ax+(bx-ax)*k,y1=ay+(by-ay)*k,x2=bx+(ax-bx)*k,y2=by+(ay-by)*k;const cls=fresh.has('e'+e.id)?'class="drop"':'';
-    s+=`<g ${cls}><line x1="${f(x1)}" y1="${f(y1+3.5)}" x2="${f(x2)}" y2="${f(y2+3.5)}" stroke="#000" stroke-opacity=".35" stroke-width="8" stroke-linecap="round"/><line x1="${f(x1)}" y1="${f(y1+2)}" x2="${f(x2)}" y2="${f(y2+2)}" stroke="${C.d}" stroke-width="7.5" stroke-linecap="round"/><line x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}" stroke="${C.c}" stroke-width="6" stroke-linecap="round"/><line x1="${f(x1)}" y1="${f(y1-1.5)}" x2="${f(x2)}" y2="${f(y2-1.5)}" stroke="#fff" stroke-opacity=".3" stroke-width="1.4" stroke-linecap="round"/></g>`});
+    const k=.17;const x1=ax+(bx-ax)*k,y1=ay+(by-ay)*k,x2=bx+(ax-bx)*k,y2=by+(ay-by)*k;const nw=fresh.has('e'+e.id),cl=nw?' class="rd"':'',pl=nw?' pathLength="1"':'';
+    s+=`<g${nw?' class="roadIn"':''}><line${pl}${cl} x1="${f(x1)}" y1="${f(y1+3.5)}" x2="${f(x2)}" y2="${f(y2+3.5)}" stroke="#000" stroke-opacity=".35" stroke-width="8" stroke-linecap="round"/><line${pl}${cl} x1="${f(x1)}" y1="${f(y1+2)}" x2="${f(x2)}" y2="${f(y2+2)}" stroke="${C.d}" stroke-width="7.5" stroke-linecap="round"/><line${pl}${cl} x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}" stroke="${C.c}" stroke-width="6" stroke-linecap="round"/><line x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}" stroke="#2a1c10" stroke-opacity=".35" stroke-width="1" stroke-dasharray="2.2 2.4"${nw?' class="rdD"':''}/><line x1="${f(x1)}" y1="${f(y1-1.6)}" x2="${f(x2)}" y2="${f(y2-1.6)}" stroke="#fff" stroke-opacity=".3" stroke-width="1.2" stroke-linecap="round"${nw?' class="rdD"':''}/></g>`});
   const items=[];
-  B.V.forEach(v=>{if(!v.b)return;const[x,y]=pj(v.x,v.y);const C=COLORS[G.players[v.b.owner].col];items.push({y,s:`<g ${fresh.has('v'+v.id)?'class="drop"':''}>${v.b.type==='ciudad'?city(x,y+4,C.c,C.d):house(x,y+4,C.c,C.d)}</g>`})});
-  const rt=B.tiles[B.robber];const[rx,ry]=pj(rt.x-27,rt.y+6);items.push({y:ry,s:`<g ${fresh.has('r')?'class="drop"':''}>${robberSvg(rx,ry)}</g>`});
+  B.V.forEach(v=>{if(!v.b)return;const[x,y]=pj(v.x,v.y);const C=COLORS[G.players[v.b.owner].col];const nw=fresh.has('v'+v.id);
+    items.push({y,s:`${nw?`<ellipse class="dropSh" cx="${f(x+3)}" cy="${f(y+4)}" rx="15" ry="4.5" fill="#000" opacity=".35"/>`:''}<g ${nw?'class="drop"':''}>${v.b.type==='ciudad'?city(x,y+4,C.c,C.d):house(x,y+4,C.c,C.d)}</g>`})});
+  const rt=B.tiles[B.robber];const[rx,ry]=pj(rt.x-27,rt.y+6);items.push({y:ry,s:`${fresh.has('r')?`<ellipse class="dropSh" cx="${f(rx)}" cy="${f(ry)}" rx="11" ry="3.4" fill="#000" opacity=".35"/>`:''}<g ${fresh.has('r')?'class="drop"':''}>${robberSvg(rx,ry)}</g>`});
   items.sort((a,b)=>a.y-b.y).forEach(i=>s+=i.s);
   $('#gDyn').innerHTML=s;fresh.clear();
   drawHot();
@@ -991,9 +1098,9 @@ function drawHot(){
   }
   $('#gHot').innerHTML=s;
 }
-function puff(x,y,kind){const[sx,sy]=pj(x,y);const g=document.createElementNS(NS,'g');const dark=kind==='robber',col=dark?'#2a2420':'#efe3c4';let h='';
+function puff(x,y,kind){const[sx,sy]=pj(x,y);const g=document.createElementNS(NS,'g');const dark=kind==='robber',gold=kind==='gather',col=dark?'#2a2420':gold?'#ffe9a0':'#efe3c4';let h='';
   for(let i=0;i<7;i++){const a=i/7*Math.PI*2,r=9+Math.random()*5;h+=`<circle class="puff" style="animation-delay:${(i%3)*.04}s" cx="${f(sx+Math.cos(a)*r)}" cy="${f(sy+3+Math.sin(a)*r*.5)}" r="${f(4+Math.random()*3)}" fill="${col}" opacity=".8"/>`}
-  if(!dark)h+=`<ellipse class="ring2" cx="${f(sx)}" cy="${f(sy+3)}" rx="20" ry="9" fill="none" stroke="#fff4c8" stroke-width="2"/>`;g.innerHTML=h;$('#gFx').appendChild(g);setTimeout(()=>g.remove(),1100)}
+  if(!dark)h+=`<ellipse class="ring2${gold?' gold':''}" cx="${f(sx)}" cy="${f(sy+3)}" rx="20" ry="9" fill="none" stroke="#fff4c8" stroke-width="2"/>`;g.innerHTML=h;$('#gFx').appendChild(g);setTimeout(()=>g.remove(),1100)}
 function puffN(x,y,kind){netPush({t:'puff',x,y,kind});puff(x,y,kind)}
 function fx(x,y,txt,delay=0){const[sx,sy]=pj(x,y);const t=document.createElementNS(NS,'text');t.setAttribute('x',f(sx));t.setAttribute('y',f(sy-14));t.setAttribute('class','fx');t.style.animationDelay=delay+'s';t.style.opacity=0;t.textContent=txt;$('#gFx').appendChild(t);setTimeout(()=>t.remove(),1800+delay*1000)}
 
@@ -1211,12 +1318,12 @@ function produce(sum){const gains=G.players.map(()=>({}));const spots=[],hits=[]
   B.tiles.forEach(t=>{if(t.num!==sum)return;hits.push(t.id);
     if(t.id===B.robber){fxN(t.x,t.y,'🦹 bloqueado');return}const r=TER[t.terrain].res;
     let mul=1;if(G.event&&G.event.terr===t.terrain){if(G.event.t==='cosecha')mul=2;if(G.event.t==='sequia'){fxN(t.x,t.y,'☀️ sequía');return}}
-    t.verts.forEach(v=>{const b=B.V[v].b;if(!b)return;const n=(b.type==='ciudad'?2:1)*mul;gains[b.owner][r]=(gains[b.owner][r]||0)+n;spots.push({p:b.owner,v,r,n})})});
+    t.verts.forEach(v=>{const b=B.V[v].b;if(!b)return;const n=(b.type==='ciudad'?2:1)*mul;gains[b.owner][r]=(gains[b.owner][r]||0)+n;spots.push({p:b.owner,v,r,n,t:t.id})})});
   hitTiles(hits);netPush({t:'hit',ids:hits});
   const blocked=new Set();
   RES.forEach(r=>{const dem=gains.reduce((s,g)=>s+(g[r]||0),0);if(dem>G.bank[r]){const owners=gains.filter(g=>g[r]).length;if(owners>1){blocked.add(r);log(`El banco no tiene suficiente ${RI[r].n.toLowerCase()}: nadie recibe`)}}});
   let any=false,total=0;const got=G.players.map(()=>({}));gains.forEach((g,p)=>{const parts=[];RES.forEach(r=>{if(g[r]&&!blocked.has(r)){const n=give(p,r,g[r]);G.stats.prod[p]+=n;if(n){parts.push(`${n}${RI[r].i}`);got[p][r]=n;total+=n}}});if(parts.length){any=true;log(`${nm(p)} recibe ${parts.join(' ')}`)}});
-  spots.forEach((s,i)=>{if(!blocked.has(s.r)){const V=B.V[s.v];fxN(V.x,V.y,`+${s.n}${RI[s.r].i}`,i*.08);for(let k=0;k<s.n;k++)giveFx(s.p,V.x,V.y,s.r,i*.12+k*.1)}});
+  const gt=new Set();spots.forEach((s,i)=>{if(!blocked.has(s.r)){const V=B.V[s.v],T=B.tiles[s.t];if(!gt.has(s.t)){gt.add(s.t);puffN(T.x,T.y,'gather')}fxN(V.x,V.y,`+${s.n}${RI[s.r].i}`,i*.08);for(let k=0;k<s.n;k++)giveFx(s.p,T.x+(Math.random()-.5)*22,T.y+(Math.random()-.5)*14,s.r,.25+i*.14+k*.12)}});
   if(any){SFX.gain();storyN({kind:'prod',tk:sum,total,gains:got})}else{log('Nadie produce');storyN({tk:sum,t:'Nadie produce',d:hits.some(id=>id===B.robber)?'El bandido bloquea ese terreno.':'Ningún pueblo toca un terreno con ese número.',ms:2600})}}
 async function handleSeven(p){
   for(let i=0;i<G.players.length;i++){const n=tot(i);if(n<=7)continue;const k=Math.floor(n/2);
@@ -1389,7 +1496,7 @@ function handCards(me){const out=[];RES.forEach(r=>{for(let k=0;k<me.res[r];k++)
 function handSig(me){return RES.map(r=>me.res[r]).join(',')+'|'+me.dev.map(d=>d.t+(d.turn>=G.turnNo?'n':'')).join(',')}
 function cardBg(c){return`linear-gradient(170deg,${c},${shade(c)})`}
 function parchCard(r){return`linear-gradient(180deg,${RI[r].c}55,transparent 38%),radial-gradient(ellipse at 50% 45%,rgba(255,255,255,.5),transparent 60%),linear-gradient(180deg,#f6ecd4,#e2cfa2)`}
-function drawDeck(me){$('#hand').innerHTML=RES.map(r=>`<div class="rcard ${me.res[r]?'':'zero'}" data-r="${r}" style="background:${parchCard(r)}"><span class="lb">${RI[r].n}</span><span class="ic">${RI[r].i}</span><span class="ct">${me.res[r]}</span></div>`).join('');
+function drawDeck(me){$('#hand').innerHTML=RES.map(r=>`<div class="rs ${me.res[r]?'':'zero'}" data-r="${r}" title="${RI[r].n}: ${me.res[r]}"><span class="ri">${ricon(r)}</span><b class="ct">${me.res[r]}</b></div>`).join('')+`<i class="sep"></i><div class="rs dv" title="Cartas de desarrollo: ${me.dev.length}"><span class="ri">${DEVICON}</span><b class="ct">${me.dev.length}</b></div>`;
   $('#hand').classList.toggle('pulse',G.cfg.help!==false&&myTurnOpen()&&G.rolled&&handCards(me).length>0&&!FAN.seen)}
 // Dibuja cartas en abanico. cards: [{r}] o [{dev,t}]; o.from: punto (o función) desde donde se reparten
 function renderFan(wrap,cards,o={}){const n=cards.length;const W=Math.max(200,wrap.clientWidth||300);const maxH=o.maxH||220;
@@ -1404,7 +1511,7 @@ function renderFan(wrap,cards,o={}){const n=cards.length;const W=Math.max(200,wr
     const isDev=c.dev!=null;const icon=isDev?DEV[c.t].i:RI[c.r].i,name=isDev?DEV[c.t].n:RI[c.r].n;
     const b=el('button',{type:'button',className:'hc'+(isDev?' dev':'')+(c.isNew?' new':'')+(c.sel?' sel':'')});b.title=name;
     b.style.cssText=`width:${f(cw)}px;height:${f(ch)}px;border-radius:${f(cw*.12)}px;z-index:${i+1};--i:${i};--st:${st}ms;--tf:${tf};${isDev?'':`background:${cardBg(RI[c.r].c)}`}`;
-    b.innerHTML=`<span class="crn" style="font-size:${f(cw*.17)}px">${icon}</span><div class="in"><div class="big" style="font-size:${f(cw*.44)}px">${icon}</div><div class="nm" style="font-size:${f(cw*(isDev?.105:.13))}px">${name}</div></div>${deal?'<i class="bk"></i>':''}`;
+    b.innerHTML=`<span class="crn" style="font-size:${f(cw*.17)}px">${icon}</span><div class="in">${isDev?`<div class="big" style="font-size:${f(cw*.44)}px">${icon}</div>`:`<div class="big" style="width:${f(cw*.58)}px;height:${f(cw*.58)}px">${ricon(c.r)}</div>`}<div class="nm" style="font-size:${f(cw*(isDev?.105:.13))}px">${name}</div></div>${deal?'<i class="bk"></i>':''}`;
     if(deal&&b.animate)b.animate([{transform:`translate(${f(fx-cw/2)}px,${f(fy-ch/2)}px) rotate(-6deg) scale(.35)`,opacity:.2},{transform:tf+' translateY(0px)',opacity:1}],{duration:440,delay:i*st,easing:'cubic-bezier(.2,.9,.3,1.18)',fill:'backwards'});
     wrap.append(b);return b});
   if(deal&&n){SFX.init();const k=Math.min(n,14);for(let j=0;j<k;j++)setTimeout(()=>SFX.deal(),Math.round(j*n/k)*st+60)}
@@ -1640,9 +1747,11 @@ function bubble(p,text){const b=$('#bubble');const C=COLORS[P(p).col];b.innerHTM
 function say(p,key,force){const pl=G&&G.players[p];if(!pl||!pl.bot||!pl.pers)return;const arr=LINES[pl.pers][key];if(!arr)return;if(!force&&Math.random()<.4)return;const text=arr[Math.random()*arr.length|0];netPush({t:'bubble',p,text});bubble(p,text)}
 function flyRes(x,y,r,delay=0,p=ME){const sel=p===ME?`#hand [data-r="${r}"]`:`#players .pl[data-i="${p}"] .av`;const card=$(sel);if(!card||!card.offsetParent)return;let sx,sy;
   if(x==null){const b=$('#boardWrap').getBoundingClientRect();sx=b.left+b.width/2;sy=b.top+b.height/2}else{const m=$('#svg').getScreenCTM();if(!m)return;const[px,py]=pj(x,y);sx=m.a*px+m.e;sy=m.d*py+m.f}
-  const t=card.getBoundingClientRect();const d=document.createElement('div');d.className='fly';d.textContent=RI[r].i;d.style.left=(sx-12)+'px';d.style.top=(sy-16)+'px';if(p!==ME)d.style.scale='.7';document.body.appendChild(d);
-  setTimeout(()=>{d.style.transform=`translate(${f(t.left+t.width/2-sx)}px,${f(t.top+t.height/2-sy)}px) rotate(${p===ME?8:-8}deg) scale(.8)`;d.style.opacity='.3'},40+delay*1000);
-  setTimeout(()=>{d.remove();const c=$(sel);if(c){c.classList.remove('bump');void c.offsetWidth;c.classList.add('bump')}},900+delay*1000)}
+  const t=card.getBoundingClientRect(),dx=t.left+t.width/2-sx,dy=t.top+t.height/2-sy,sc=p===ME?.8:.55;const d=document.createElement('div');d.className='fly';d.innerHTML=ricon(r);d.style.left=(sx-15)+'px';d.style.top=(sy-15)+'px';document.body.appendChild(d);
+  // el material sale del terreno, salta y vuela directo a tu barra de recursos
+  const done=()=>{if(!d.isConnected)return;d.remove();const c=$(sel);if(c){c.classList.remove('bump');void c.offsetWidth;c.classList.add('bump')}if(p===ME&&SFX.ctx&&SFX.on)SFX.tone(1180+Math.random()*200,.06,'triangle',.05)};
+  if(d.animate){const a=d.animate([{transform:'translate(0,8px) scale(.15)',opacity:0},{offset:.2,transform:'translate(0,-30px) scale(1.35)',opacity:1},{offset:.32,transform:'translate(0,-22px) scale(1.12)',opacity:1},{offset:1,transform:`translate(${f(dx)}px,${f(dy)}px) scale(${sc})`,opacity:.9}],{duration:1300,delay:delay*1000,easing:'cubic-bezier(.45,.05,.55,.95)',fill:'both'});a.onfinish=done}
+  setTimeout(done,1300+delay*1000+900)}
 function confetti(){const cs=['#f4b947','#e0463c','#2f80e2','#72d07c','#ffffff','#f28a22'];for(let i=0;i<110;i++){const d=document.createElement('div');d.className='conf';d.style.left=Math.random()*100+'vw';d.style.background=cs[i%cs.length];
   d.style.animationDuration=(2.2+Math.random()*2.2)+'s';d.style.animationDelay=(Math.random()*.9)+'s';d.style.width=(6+Math.random()*6)+'px';document.body.appendChild(d);setTimeout(()=>d.remove(),5600)}}
 function roundStart(){if(G.event){log(`Terminó el evento <b>${EVENTS[G.event.t].n}</b>`);G.event=null}
