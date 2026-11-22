@@ -644,6 +644,7 @@ table.costs th{text-align:left;font-size:10px;letter-spacing:.1em;text-transform
         <div><label>Puntos para ganar</label><div class="seg" data-k="goal"><button type="button" data-v="7">7</button><button type="button" data-v="10">10</button><button type="button" data-v="12">12</button></div></div>
         <div><label>Velocidad bots</label><div class="seg" data-k="speed"><button type="button" data-v="lenta">Lenta</button><button type="button" data-v="normal">Normal</button><button type="button" data-v="rapida">Rápida</button></div></div>
         <div><label>Eventos</label><div class="seg" data-k="events"><button type="button" data-v="1">Sí</button><button type="button" data-v="0">No</button></div></div>
+        <div><label>Orden inicial</label><div class="seg" data-k="order"><button type="button" data-v="ronda" title="1-2-3-4 y otra vez 1-2-3-4: cada uno pone un pueblo por vuelta">En ronda</button><button type="button" data-v="serpiente" title="1-2-3-4 y después 4-3-2-1 (regla clásica)">Ida y vuelta</button></div></div>
         <div><label>Dados</label><div class="seg" data-k="dice"><button type="button" data-v="normal">Al azar</button><button type="button" data-v="justo">Justos</button></div></div>
         <div><label>Ayudas</label><div class="seg" data-k="help"><button type="button" data-v="1">Sí</button><button type="button" data-v="0">No</button></div></div>
         <div><label>Tu color</label><div class="row" id="swatches"></div></div>
@@ -1704,7 +1705,8 @@ const MANUAL=[
     <p>Cada hexágono tiene un número del 2 al 12. Los puntitos debajo muestran qué tan seguido sale: <b style="color:#e5574b">6 y 8</b> son los más frecuentes y nunca quedan pegados. El 2 y el 12 casi no salen.</p>
     <p>Los pueblos y ciudades van en las <b>esquinas</b> y los caminos en los <b>bordes</b>.</p>
     <p><b>Girar el tablero:</b> arrastrá el tablero con el dedo hacia los costados, o usá los botones ⟲ ⟳ de arriba a la izquierda. Con doble toque en esos botones vuelve a la posición original.</p><p><b>Zoom:</b> usá la rueda del mouse, pellizcá con dos dedos o mové la barrita de arriba. Con zoom, arrastrá para recorrer la isla.</p><p><b>🎥 Cámara:</b> cuando está activada, la cámara se acerca sola a lo importante: los terrenos que producen, el bandido y lo que construyen los rivales. Tocala para dejar la cámara fija. <b>🧭 Recorrido</b> te da una vuelta por la isla.</p>`],
-  ['inicio','🏁 Colocación inicial',()=>`<p>Cada jugador pone <b>1 pueblo y 1 camino</b> pegado a ese pueblo. El orden es de ida y vuelta: 1-2-3-4 y después 4-3-2-1, así el último en la primera vuelta es el primero en la segunda.</p>
+  ['inicio','🏁 Colocación inicial',()=>`<p>Cada jugador pone <b>1 pueblo y 1 camino</b> pegado a ese pueblo. Se dan dos vueltas y en cada vuelta cada uno pone uno, por turno.</p>
+    <p><b>Orden inicial</b> (en Opciones): <b>En ronda</b> es 1-2-3-4 y otra vez 1-2-3-4, nadie pone dos seguidos. <b>Ida y vuelta</b> es la regla clásica: 1-2-3-4 y después 4-3-2-1, así el último pone dos seguidos y el primero cierra.</p>
     <p>Tu <b>segundo pueblo</b> te da 1 recurso de cada hexágono que lo toca.</p>`],
   ['turno','🎲 Tu turno',()=>`<ol><li><b>Tirá los dados.</b> Todos los que tengan pueblos o ciudades en un hexágono con ese número cobran recursos (el pueblo da 1, la ciudad 2). El hexágono con el bandido no produce.</li>
     <li><b>Comerciá</b> con el banco, tus puertos o los otros jugadores.</li><li><b>Construí</b> todo lo que puedas pagar.</li><li><b>Terminá</b> el turno.</li></ol>
@@ -1850,7 +1852,7 @@ $('#actions').addEventListener('click',onActClick);$('#tcBtns').addEventListener
 $('#devBox').addEventListener('click',e=>{if(e.target.closest('.dc')||!G)return;SFX.init();openFan(true)});
 
 // ====================== Partida ======================
-let CFG={rivals:3,col:0,diff:'normal',goal:10,speed:'normal',events:true,dice:'normal',help:true};
+let CFG={rivals:3,col:0,diff:'normal',goal:10,speed:'normal',events:true,dice:'normal',order:'ronda',help:true};
 const BOOLK=['events','help'];
 function newGame(name,cfg,seats){
   BD=SPEED[cfg.speed]||750;
@@ -1878,8 +1880,8 @@ async function mainLoop(p,resumed){const n=G.players.length;
     if(checkWin())break;p=(p+1)%n}
   if(!NET)clearSave();else{NET.status='ended'}refresh();showWin()}
 async function playGame(){
-  const n=G.players.length,ord=[...Array(n).keys()],seq=[...ord,...ord.slice().reverse()];
-  log('Comienza la colocación inicial. Cada uno pone un pueblo y un camino, dos veces.');
+  const n=G.players.length,ord=[...Array(n).keys()],snake=G.cfg.order==='serpiente',seq=[...ord,...(snake?ord.slice().reverse():ord)];
+  log(snake?'Comienza la colocación inicial, de ida y vuelta: cada uno pone un pueblo y un camino, dos veces.':'Comienza la colocación inicial, en ronda: cada uno pone un pueblo y un camino por vuelta, dos vueltas.');
   for(let k=0;k<seq.length;k++){const p=seq[k];G.cur=p;G.setupRound=k<n?1:2;refresh();
     let v;if(P(p).bot){await sleep(BD);v=botSetupVertex(p)}else{SFX.turn();toastTo(p,G.setupRound===1?'Colocá tu primer pueblo':'Colocá tu segundo pueblo');v=await askPick(p,'vertex',setupSpots(),G.setupRound===1?'Colocá tu primer pueblo':'Colocá tu segundo pueblo (te da recursos)',false,()=>botSetupVertex(p))}
     placeBuilding(p,v,'pueblo');SFX.build();
