@@ -189,21 +189,24 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 #siteTip .sc{margin-top:4px;border-top:1px dashed #b89e6e;padding-top:3px;font-weight:700;font-size:12px;color:#5e3d0c}
 
 
-/* barra de recursos (arriba) */
-#hand{display:flex;gap:4px;align-items:center;padding:3px 5px;border-radius:8px;border:0;color:inherit;font:inherit;cursor:pointer;flex:none;position:relative;
-  background:linear-gradient(180deg,#120a04,#22150b);box-shadow:inset 0 1px 5px rgba(0,0,0,.85),0 0 0 1px #6b4826,0 0 0 2px #1c110a,0 0 0 3px rgba(201,162,90,.35)}
-#hand:hover{box-shadow:inset 0 1px 5px rgba(0,0,0,.85),0 0 0 1px #c9a25a,0 0 0 2px #1c110a,0 0 0 3px rgba(201,162,90,.6)}
-.rs{position:relative;display:flex;align-items:center;gap:3px;padding:1px 7px 1px 2px;border-radius:5px;min-width:54px;
-  background:linear-gradient(180deg,rgba(255,235,190,.07),rgba(0,0,0,.25));border:1px solid rgba(201,162,90,.28)}
-.rs .ri{width:26px;height:26px;flex:none;display:block;filter:drop-shadow(0 1px 1px rgba(0,0,0,.8))}
+/* cartas de recursos (arriba), de pergamino como en un juego de mesa */
+#hand{display:flex;gap:5px;align-items:stretch;padding:4px 6px;border-radius:9px;border:0;color:inherit;font:inherit;cursor:pointer;flex:none;position:relative;
+  background:linear-gradient(180deg,#120a04,#22150b);box-shadow:inset 0 1px 6px rgba(0,0,0,.85),0 0 0 1px #6b4826,0 0 0 2px #1c110a,0 0 0 3px rgba(201,162,90,.35)}
+#hand:hover{box-shadow:inset 0 1px 6px rgba(0,0,0,.85),0 0 0 1px #c9a25a,0 0 0 2px #1c110a,0 0 0 3px rgba(201,162,90,.6)}
+.rs{position:relative;width:58px;height:74px;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:3px 2px 4px;color:var(--ink);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--tint) 30%,transparent),transparent 34%),radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.55),transparent 62%),linear-gradient(180deg,#f6ecd4,#e2cfa2);
+  border:1px solid #8a6a32;box-shadow:inset 0 0 0 2px rgba(255,255,255,.4),inset 0 0 0 3px rgba(138,106,50,.25),0 2px 0 #2a180c,0 4px 8px rgba(0,0,0,.45);transition:transform .2s cubic-bezier(.3,1.6,.5,1)}
+.rs .lb{font-family:var(--display);font-weight:700;font-size:12.5px;line-height:1;white-space:nowrap}
+.rs .ri{width:34px;height:34px;display:block;filter:drop-shadow(0 2px 1px rgba(0,0,0,.35))}
 .rs .ri svg{width:100%;height:100%;display:block}
-.rs .ct{font-family:var(--display);font-weight:700;font-size:19px;line-height:1;color:#f6e7c1;min-width:12px;text-align:right;margin-left:auto;text-shadow:0 1px 0 #000,0 0 6px rgba(0,0,0,.6)}
-.rs.zero .ct{color:#8a7a5c}.rs.zero .ri{opacity:.55;filter:grayscale(.6)}
+.rs .ct{min-width:24px;height:17px;border-radius:4px;background:#3a2415;color:var(--parch);font-family:var(--display);font-weight:700;font-size:14px;line-height:17px;text-align:center;padding:0 5px;border:1px solid #c9a25a88}
+.rs.zero{filter:saturate(.35);opacity:.7}.rs.zero .ct{background:#7a6247}
+#hand:hover .rs{transform:translateY(-2px)}
 .rs.bump{animation:rsBump .5s}
-@keyframes rsBump{30%{transform:translateY(-3px) scale(1.14);background:rgba(224,183,101,.38);box-shadow:0 0 12px rgba(224,183,101,.7)}}
-#hand .sep{width:1px;height:24px;background:rgba(201,162,90,.35);margin:0 1px}
+@keyframes rsBump{30%{transform:translateY(-5px) scale(1.12);box-shadow:0 0 0 2px #e0b765,0 0 16px rgba(224,183,101,.85)}}
+#hand .sep{width:1px;align-self:center;height:56px;background:rgba(201,162,90,.35);margin:0 1px}
 #hand.pulse .rs:not(.dv){animation:handp 1.6s ease-in-out infinite}
-@keyframes handp{50%{box-shadow:0 0 0 1px rgba(224,183,101,.8),0 0 12px rgba(224,183,101,.55)}}
+@keyframes handp{50%{box-shadow:0 0 0 2px rgba(224,183,101,.85),0 0 14px rgba(224,183,101,.6)}}
 .fly{position:fixed;z-index:50;width:30px;height:30px;padding:3px;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 40% 35%,#fffaf0,#e3d1a6);border:1.5px solid #8a6a32;box-shadow:0 5px 12px rgba(0,0,0,.5),0 0 10px rgba(255,230,150,.6)}
 .fly svg{width:100%;height:100%;display:block}
 .hc .big svg{width:100%;height:100%;display:block}
@@ -522,7 +525,7 @@ table.costs th{text-align:left;font-size:10px;letter-spacing:.1em;text-transform
   #app{gap:4px;padding:3px 0;grid-template-columns:clamp(104px,14vw,150px) minmax(0,1fr) clamp(140px,19vw,200px)}
   #topbar{min-height:28px;padding:2px 6px;gap:6px}.brand{font-size:17px;gap:5px}.crest{width:20px;height:20px;font-size:10px}
   #banner{font-size:14px}#banner .orn{display:none}
-  .brand .bt{display:none}#hand{padding:2px 3px;gap:2px}.rs{min-width:40px;padding:0 4px 0 1px;gap:1px}.rs .ri{width:19px;height:19px}.rs .ct{font-size:14px}#hand .sep{height:18px}
+  .brand .bt{display:none}#hand{padding:2px 4px;gap:3px}.rs{width:41px;height:50px;padding:2px 1px 2px}.rs .lb{font-size:8.5px}.rs .ri{width:21px;height:21px}.rs .ct{min-width:18px;height:13px;line-height:13px;font-size:10.5px;padding:0 3px}#hand .sep{height:38px}
   .iconBtn,.rulesBtn{height:24px}.iconBtn{width:24px;font-size:11px}.rulesBtn{font-size:13px;padding:0 8px}
   #left{padding:4px 3px}.colT{font-size:13px;margin-bottom:2px}
   .pl{gap:5px;padding:3px 3px 3px 2px}.av{width:26px;height:26px;font-size:13px;border-width:1.5px}.pl .nm{font-size:13.5px}.pl .hs{display:none}.pl .st{font-size:10.5px;gap:4px}
@@ -1496,7 +1499,7 @@ function handCards(me){const out=[];RES.forEach(r=>{for(let k=0;k<me.res[r];k++)
 function handSig(me){return RES.map(r=>me.res[r]).join(',')+'|'+me.dev.map(d=>d.t+(d.turn>=G.turnNo?'n':'')).join(',')}
 function cardBg(c){return`linear-gradient(170deg,${c},${shade(c)})`}
 function parchCard(r){return`linear-gradient(180deg,${RI[r].c}55,transparent 38%),radial-gradient(ellipse at 50% 45%,rgba(255,255,255,.5),transparent 60%),linear-gradient(180deg,#f6ecd4,#e2cfa2)`}
-function drawDeck(me){$('#hand').innerHTML=RES.map(r=>`<div class="rs ${me.res[r]?'':'zero'}" data-r="${r}" title="${RI[r].n}: ${me.res[r]}"><span class="ri">${ricon(r)}</span><b class="ct">${me.res[r]}</b></div>`).join('')+`<i class="sep"></i><div class="rs dv" title="Cartas de desarrollo: ${me.dev.length}"><span class="ri">${DEVICON}</span><b class="ct">${me.dev.length}</b></div>`;
+function drawDeck(me){$('#hand').innerHTML=RES.map(r=>`<div class="rs ${me.res[r]?'':'zero'}" data-r="${r}" title="${RI[r].n}: ${me.res[r]}" style="--tint:${RI[r].c}"><span class="lb">${RI[r].n}</span><span class="ri">${ricon(r)}</span><b class="ct">${me.res[r]}</b></div>`).join('')+`<i class="sep"></i><div class="rs dv" title="Cartas de desarrollo: ${me.dev.length}" style="--tint:#5a46a0"><span class="lb">Desarrollo</span><span class="ri">${DEVICON}</span><b class="ct">${me.dev.length}</b></div>`;
   $('#hand').classList.toggle('pulse',G.cfg.help!==false&&myTurnOpen()&&G.rolled&&handCards(me).length>0&&!FAN.seen)}
 // Dibuja cartas en abanico. cards: [{r}] o [{dev,t}]; o.from: punto (o función) desde donde se reparten
 function renderFan(wrap,cards,o={}){const n=cards.length;const W=Math.max(200,wrap.clientWidth||300);const maxH=o.maxH||220;
